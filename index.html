@@ -36,11 +36,6 @@ nav{
   position:sticky;
   top:0;
   z-index:1000;
-  transition:0.3s;
-}
-
-nav.scrolled{
-  background:#08306b;
 }
 
 nav .logo{
@@ -91,31 +86,6 @@ header{
   align-items:center;
   text-align:center;
   padding:20px;
-  position:relative;
-  overflow:hidden;
-}
-
-header::before{
-  content:'';
-  position:absolute;
-  width:200%;
-  height:200%;
-  background:radial-gradient(circle, rgba(255,255,255,0.1) 20%, transparent 20%), radial-gradient(circle, rgba(255,255,255,0.1) 20%, transparent 20%);
-  background-position:0 0, 50px 50px;
-  background-size:100px 100px;
-  animation:moveBg 20s linear infinite;
-  z-index:0;
-}
-
-@keyframes moveBg{
-  0%{transform:translate(0,0);}
-  50%{transform:translate(-50px,-50px);}
-  100%{transform:translate(0,0);}
-}
-
-header h1, header p, header button{
-  position:relative;
-  z-index:1;
 }
 
 header h1{
@@ -148,7 +118,6 @@ button:hover{
 section{
   padding:70px 20px;
   text-align:center;
-  transition:0.3s;
 }
 
 section h2{
@@ -229,10 +198,10 @@ section h2{
   display:none;
 }
 
-/* STUDENT INFO PAGE */
+/* STUDENT PAGE */
 .student-page{
   display:none;
-  padding:50px 20px;
+  padding:30px 20px;
 }
 
 .add-student-box{
@@ -283,7 +252,7 @@ section h2{
 
 .student-detail{
   display:none;
-  margin-top:15px;
+  margin-top:10px;
   background:#f0f0f0;
   padding:15px;
   border-radius:6px;
@@ -291,16 +260,17 @@ section h2{
 
 .attendance-grid{
   display:grid;
-  grid-template-columns: repeat(7, 40px);
-  gap:5px;
+  grid-template-columns: repeat(10, 30px);
+  gap:3px;
   margin-bottom:10px;
 }
 
 .attendance-grid div{
-  padding:10px;
+  padding:5px;
   border:1px solid #ccc;
   cursor:pointer;
   text-align:center;
+  font-size:12px;
 }
 
 .attendance-grid div.present{
@@ -316,6 +286,13 @@ section h2{
 .payment-status{
   margin-top:10px;
   font-weight:bold;
+}
+
+.payment-status button{
+  margin-left:10px;
+  padding:2px 6px;
+  font-size:12px;
+  cursor:pointer;
 }
 
 footer{
@@ -395,16 +372,7 @@ footer{
     <button onclick="addStudent()">Add Student</button>
   </div>
   <div class="student-list" id="studentList">
-    <!-- student items will appear here -->
-  </div>
-
-  <div class="student-detail" id="studentDetail">
-    <h3 id="detailName"></h3>
-    <div>
-      <h4>Attendance</h4>
-      <div class="attendance-grid" id="attendanceGrid"></div>
-    </div>
-    <div class="payment-status" id="paymentStatus"></div>
+    <!-- students added here -->
   </div>
 </div>
 
@@ -413,16 +381,6 @@ footer{
 </footer>
 
 <script>
-// Navbar scroll effect
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
-  if(window.scrollY > 50){
-    nav.classList.add('scrolled');
-  }else{
-    nav.classList.remove('scrolled');
-  }
-});
-
 // Show home page
 document.getElementById('homeLink').addEventListener('click', () => {
   document.getElementById('homePage').style.display='block';
@@ -437,7 +395,7 @@ document.getElementById('adminLink').addEventListener('click', () => {
   document.getElementById('loginPage').style.display='flex';
 });
 
-// Admin login check
+// Admin login
 function checkLogin(){
   const user = document.getElementById('username').value;
   const pass = document.getElementById('password').value;
@@ -450,7 +408,7 @@ function checkLogin(){
   }
 }
 
-// Load students from localStorage
+// Load students
 function loadStudents(){
   document.getElementById('studentPage').style.display='block';
   let students = JSON.parse(localStorage.getItem('students')) || [];
@@ -465,66 +423,82 @@ function renderStudentList(students){
     const div = document.createElement('div');
     div.className='student-item';
     const nameSpan = document.createElement('span');
-    nameSpan.textContent=s.name || 'Unnamed';
+    nameSpan.textContent=(i+1)+'. '+ (s.name || 'Unnamed');
     nameSpan.className='editable';
     nameSpan.contentEditable=true;
     nameSpan.addEventListener('input',()=>{
-      students[i].name = nameSpan.textContent;
+      students[i].name = nameSpan.textContent.split('. ')[1] || 'Unnamed';
       localStorage.setItem('students', JSON.stringify(students));
+      nameSpan.textContent = (i+1)+'. '+ students[i].name;
     });
     const btn = document.createElement('button');
     btn.textContent='More';
-    btn.addEventListener('click', ()=> showStudentDetail(i));
+    btn.addEventListener('click', ()=> showStudentDetail(i,div));
     div.appendChild(nameSpan);
     div.appendChild(btn);
     list.appendChild(div);
   });
 }
 
-// Add new student
+// Add student
 function addStudent(){
-  const name = document.getElementById('newStudentName').value.trim();
+  const nameInput = document.getElementById('newStudentName');
+  const name = nameInput.value.trim();
   if(name==='') return;
   let students = JSON.parse(localStorage.getItem('students')) || [];
-  students.push({name:name, attendance:[], payment:false});
+  students.push({name:name, attendance:Array(30).fill('A'), payment:false});
   localStorage.setItem('students', JSON.stringify(students));
-  document.getElementById('newStudentName').value='';
+  nameInput.value='';
   renderStudentList(students);
 }
 
 // Show student detail
-function showStudentDetail(index){
+function showStudentDetail(index, divParent){
   let students = JSON.parse(localStorage.getItem('students')) || [];
+  // hide all other details
+  document.querySelectorAll('.student-detail').forEach(d=>d.remove());
   const s = students[index];
-  const detailDiv = document.getElementById('studentDetail');
-  detailDiv.style.display='block';
-  document.getElementById('detailName').textContent = s.name;
-  const attGrid = document.getElementById('attendanceGrid');
-  attGrid.innerHTML='';
-  // ensure 7 days
-  if(!s.attendance || s.attendance.length<7) s.attendance = Array(7).fill('A');
+  const detailDiv = document.createElement('div');
+  detailDiv.className='student-detail';
+  const nameH3 = document.createElement('h3');
+  nameH3.textContent = s.name;
+  detailDiv.appendChild(nameH3);
+
+  const attH4 = document.createElement('h4');
+  attH4.textContent='Attendance';
+  detailDiv.appendChild(attH4);
+
+  const attGrid = document.createElement('div');
+  attGrid.className='attendance-grid';
   s.attendance.forEach((a,day)=>{
-    const div = document.createElement('div');
-    div.className = a==='P' ? 'present' : 'absent';
-    div.textContent = a==='P' ? '✔' : '✖';
-    div.addEventListener('click', ()=>{
-      if(div.className==='present'){ div.className='absent'; div.textContent='✖'; s.attendance[day]='A'; }
-      else{ div.className='present'; div.textContent='✔'; s.attendance[day]='P'; }
-      students[index] = s;
+    const cell = document.createElement('div');
+    cell.className=a==='P'?'present':'absent';
+    cell.textContent=a==='P'?'✔':'✖';
+    cell.addEventListener('click',()=>{
+      if(cell.className==='present'){ cell.className='absent'; cell.textContent='✖'; s.attendance[day]='A'; }
+      else{ cell.className='present'; cell.textContent='✔'; s.attendance[day]='P'; }
+      students[index]=s;
       localStorage.setItem('students', JSON.stringify(students));
     });
-    attGrid.appendChild(div);
+    attGrid.appendChild(cell);
   });
-  document.getElementById('paymentStatus').innerHTML = 'Payment Done: ' + (s.payment ? 'Yes' : 'No') +
-    ' <button onclick="togglePayment('+index+')">Toggle</button>';
-}
+  detailDiv.appendChild(attGrid);
 
-// Toggle payment
-function togglePayment(index){
-  let students = JSON.parse(localStorage.getItem('students')) || [];
-  students[index].payment = !students[index].payment;
-  localStorage.setItem('students', JSON.stringify(students));
-  showStudentDetail(index);
+  const paymentDiv = document.createElement('div');
+  paymentDiv.className='payment-status';
+  paymentDiv.innerHTML='Payment Done: ' + (s.payment?'Yes':'No');
+  const btn = document.createElement('button');
+  btn.textContent='Change';
+  btn.addEventListener('click',()=>{
+    s.payment = !s.payment;
+    students[index]=s;
+    localStorage.setItem('students', JSON.stringify(students));
+    showStudentDetail(index, divParent);
+  });
+  paymentDiv.appendChild(btn);
+  detailDiv.appendChild(paymentDiv);
+
+  divParent.after(detailDiv);
 }
 </script>
 </body>
