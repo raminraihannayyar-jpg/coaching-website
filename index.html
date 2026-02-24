@@ -1,364 +1,367 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
+<title>Bright Future Coaching</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bright Future Coaching Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:linear-gradient(135deg,#1e3c72,#2a5298);min-height:100vh;}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
 
-/* NAV */
+body{
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:white;
+min-height:100vh;
+}
+
+/* NAVBAR */
 nav{
-  background:#000;
-  padding:15px 40px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-nav .logo{color:white;font-size:22px;font-weight:bold;}
-nav ul{list-style:none;display:flex;}
-nav ul li{margin-left:20px;}
-nav ul li a{color:white;text-decoration:none;cursor:pointer;}
-nav ul li a:hover{color:#ffcc00;}
-
-/* HOME */
-#homePage{
-  text-align:center;
-  color:white;
-  padding:120px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:rgba(0,0,0,0.4);
+backdrop-filter:blur(10px);
 }
 
-/* LOGIN */
-.login-container{
-  display:none;
-  height:80vh;
-  justify-content:center;
-  align-items:center;
-}
-.login-box{
-  background:white;
-  padding:40px;
-  border-radius:12px;
-  width:320px;
-  text-align:center;
-  animation:fadeIn 0.6s ease;
-}
-.login-box input{
-  width:100%;
-  padding:10px;
-  margin:10px 0;
-}
-.login-box button{
-  width:100%;
-  padding:10px;
-  background:#1e3c72;
-  color:white;
-  border:none;
+nav h2{
+letter-spacing:2px;
 }
 
-/* DASHBOARD */
-.dashboard{
-  display:none;
-  background:#f4f6f9;
-  min-height:100vh;
-  padding:30px;
-  animation:fadeIn 0.6s ease;
+nav ul{
+list-style:none;
+display:flex;
+gap:20px;
 }
 
-.stats{
-  display:flex;
-  gap:20px;
-  margin-bottom:25px;
-}
-.stat-box{
-  flex:1;
-  background:white;
-  padding:20px;
-  border-radius:10px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.1);
-  text-align:center;
-}
-.stat-box h3{margin-bottom:10px;}
-
-.add-box{
-  display:flex;
-  gap:10px;
-  margin-bottom:20px;
-}
-.add-box input{
-  flex:1;
-  padding:8px;
-}
-.add-box button{
-  background:#1e3c72;
-  color:white;
-  border:none;
-  padding:8px 15px;
+nav ul li{
+cursor:pointer;
+padding:8px 18px;
+background:rgba(255,255,255,0.1);
+border-radius:20px;
+transition:0.3s;
 }
 
-/* STUDENTS */
-.student-wrapper{margin-bottom:15px;}
-.student-item{
-  background:white;
-  padding:15px;
-  border-radius:8px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
-.student-name{
-  flex:1;
-  font-weight:500;
-}
-.student-name[contenteditable]{
-  border-bottom:1px dotted #aaa;
-}
-.more-btn{
-  background:#1e3c72;
-  color:white;
-  padding:5px 12px;
-  border:none;
-  cursor:pointer;
+nav ul li:hover{
+background:#00c6ff;
+transform:scale(1.1);
 }
 
-/* SLIDE */
-.student-detail{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height 0.5s ease, padding 0.4s ease;
-  background:#e9ecef;
-  border-radius:0 0 8px 8px;
-}
-.student-detail.open{
-  max-height:700px;
-  padding:15px;
+/* HOME PAGE */
+.section{
+padding:60px 20px;
+text-align:center;
+animation:fadeIn 1s ease;
 }
 
-/* Attendance */
-.attendance{
-  display:grid;
-  grid-template-columns:repeat(10,1fr);
-  gap:5px;
-  margin-top:10px;
+.class-box{
+background:rgba(255,255,255,0.1);
+padding:20px;
+margin:15px auto;
+width:250px;
+border-radius:15px;
+transition:0.3s;
 }
-.day{
-  background:#ff4d4d;
-  color:white;
-  text-align:center;
-  padding:5px;
-  cursor:pointer;
-  border-radius:4px;
-  font-size:12px;
-}
-.day.present{background:#28a745;}
 
-.payment{margin-top:15px;}
-
-.logout-btn{
-  margin-top:20px;
-  background:red;
-  color:white;
-  border:none;
-  padding:8px 15px;
-  cursor:pointer;
+.class-box:hover{
+transform:translateY(-10px);
+background:#00c6ff;
 }
 
 @keyframes fadeIn{
-  from{opacity:0;}
-  to{opacity:1;}
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
 }
 
-footer{
-  text-align:center;
-  padding:15px;
-  background:black;
-  color:white;
+/* LOGIN */
+#loginPage{
+display:none;
+height:100vh;
+justify-content:center;
+align-items:center;
+}
+
+.login-box{
+background:white;
+color:black;
+padding:30px;
+border-radius:15px;
+width:300px;
+text-align:center;
+animation:fadeIn 0.5s ease;
+}
+
+.login-box input{
+width:100%;
+padding:10px;
+margin:10px 0;
+border-radius:10px;
+border:1px solid #ccc;
+}
+
+.login-box button{
+padding:10px;
+width:100%;
+border:none;
+background:#2a5298;
+color:white;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* ADMIN DASHBOARD */
+#adminDashboard{
+display:none;
+padding:30px;
+}
+
+.dashboard-header{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+}
+
+.add-btn{
+padding:10px 20px;
+background:#00c6ff;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.student-card{
+background:white;
+color:black;
+margin:15px 0;
+padding:15px;
+border-radius:10px;
+overflow:hidden;
+transition:0.4s;
+}
+
+.student-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.more-btn{
+padding:5px 15px;
+border:none;
+background:#2a5298;
+color:white;
+border-radius:10px;
+cursor:pointer;
+}
+
+.student-details{
+max-height:0;
+overflow:hidden;
+transition:max-height 0.5s ease;
+}
+
+.student-details.active{
+max-height:600px;
+margin-top:10px;
+}
+
+.attendance{
+display:grid;
+grid-template-columns:repeat(10,1fr);
+gap:5px;
+margin-top:10px;
+}
+
+.attendance div{
+background:#ddd;
+padding:5px;
+font-size:12px;
+text-align:center;
+border-radius:5px;
+cursor:pointer;
+}
+
+.attendance .present{
+background:green;
+color:white;
+}
+
+.payment-btn{
+margin-top:10px;
+padding:5px 15px;
+background:red;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.payment-btn.paid{
+background:green;
 }
 </style>
 </head>
+
 <body>
 
+<!-- NAVBAR -->
 <nav>
-  <div class="logo">Bright Future</div>
-  <ul>
-    <li><a id="homeBtn">Home</a></li>
-    <li><a id="adminBtn">Admin</a></li>
-  </ul>
+<h2>Bright Future</h2>
+<ul>
+<li onclick="showHome()">Home</li>
+<li onclick="showLogin()">Admin</li>
+</ul>
 </nav>
 
-<!-- HOME -->
+<!-- HOME PAGE -->
 <div id="homePage">
-  <h1>Bright Future Coaching Academy</h1>
-  <p>Professional Student Management System</p>
+<div class="section">
+<h1>Welcome to Bright Future Coaching</h1>
+<p>We provide quality education for all classes</p>
 </div>
 
-<!-- LOGIN -->
-<div class="login-container" id="loginPage">
-  <div class="login-box">
-    <h2>Admin Login</h2>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="checkLogin()">Login</button>
-    <p id="errorMsg" style="color:red;display:none;">Wrong Info</p>
-  </div>
+<div class="section">
+<h2>Our Classes</h2>
+<div class="class-box">Class 6</div>
+<div class="class-box">Class 7</div>
+<div class="class-box">Class 8</div>
+<div class="class-box">Class 9</div>
+<div class="class-box">Class 10</div>
 </div>
 
-<!-- DASHBOARD -->
-<div class="dashboard" id="dashboard">
-
-  <div class="stats">
-    <div class="stat-box">
-      <h3>Total Students</h3>
-      <p id="totalCount">0</p>
-    </div>
-    <div class="stat-box">
-      <h3>Paid Students</h3>
-      <p id="paidCount">0</p>
-    </div>
-    <div class="stat-box">
-      <h3>Unpaid Students</h3>
-      <p id="unpaidCount">0</p>
-    </div>
-  </div>
-
-  <div class="add-box">
-    <input type="text" id="newStudent" placeholder="Enter Student Name">
-    <button onclick="addStudent()">Add Student</button>
-  </div>
-
-  <div id="studentList"></div>
-
-  <button class="logout-btn" onclick="logout()">Logout</button>
+<div class="section">
+<h2>Admission Open</h2>
+<p>Contact us to enroll now!</p>
+</div>
 </div>
 
-<footer>© 2026 Bright Future Coaching Academy</footer>
+<!-- LOGIN PAGE -->
+<div id="loginPage">
+<div class="login-box">
+<h2>Admin Login</h2>
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+<button onclick="login()">Login</button>
+</div>
+</div>
+
+<!-- ADMIN DASHBOARD -->
+<div id="adminDashboard">
+<div class="dashboard-header">
+<h2>Admin Dashboard</h2>
+<button class="add-btn" onclick="addStudent()">+ Add Student</button>
+</div>
+
+<div id="studentList"></div>
+</div>
 
 <script>
-
 let students = JSON.parse(localStorage.getItem("students")) || [];
 
-// NAV
-homeBtn.onclick=()=>{homePage.style.display="block";loginPage.style.display="none";dashboard.style.display="none";}
-adminBtn.onclick=()=>{homePage.style.display="none";loginPage.style.display="flex";}
-
-// LOGIN
-function checkLogin(){
-  if(username.value==="sir" && password.value==="1234"){
-    loginPage.style.display="none";
-    dashboard.style.display="block";
-    updateStats();
-    renderStudents();
-  }else{
-    errorMsg.style.display="block";
-  }
-}
-
-// LOGOUT
-function logout(){
-  dashboard.style.display="none";
-  homePage.style.display="block";
-}
-
-// SAVE
 function saveData(){
-  localStorage.setItem("students",JSON.stringify(students));
-  updateStats();
+localStorage.setItem("students",JSON.stringify(students));
 }
 
-// STATS
-function updateStats(){
-  totalCount.innerText=students.length;
-  paidCount.innerText=students.filter(s=>s.paid).length;
-  unpaidCount.innerText=students.filter(s=>!s.paid).length;
+function showHome(){
+document.getElementById("homePage").style.display="block";
+document.getElementById("loginPage").style.display="none";
+document.getElementById("adminDashboard").style.display="none";
 }
 
-// ADD
+function showLogin(){
+document.getElementById("homePage").style.display="none";
+document.getElementById("loginPage").style.display="flex";
+document.getElementById("adminDashboard").style.display="none";
+}
+
+function login(){
+let user=document.getElementById("username").value;
+let pass=document.getElementById("password").value;
+
+if(user==="admin" && pass==="1234"){
+document.getElementById("loginPage").style.display="none";
+document.getElementById("adminDashboard").style.display="block";
+renderStudents();
+}else{
+alert("Wrong login");
+}
+}
+
 function addStudent(){
-  let name=newStudent.value.trim();
-  if(name==="")return;
-  students.push({name:name,attendance:Array(30).fill(false),paid:false});
-  newStudent.value="";
-  saveData();
-  renderStudents();
+let name=prompt("Enter student name:");
+if(name){
+students.push({
+name:name,
+attendance:Array(30).fill(false),
+paid:false
+});
+saveData();
+renderStudents();
+}
 }
 
-// RENDER
+function toggleDetails(index){
+let details=document.getElementById("details"+index);
+details.classList.toggle("active");
+}
+
+function toggleAttendance(index,day){
+students[index].attendance[day]=!students[index].attendance[day];
+saveData();
+renderStudents();
+}
+
+function togglePayment(index){
+students[index].paid=!students[index].paid;
+saveData();
+renderStudents();
+}
+
 function renderStudents(){
-  studentList.innerHTML="";
-  students.forEach((s,index)=>{
-    let wrapper=document.createElement("div");
-    wrapper.className="student-wrapper";
+let list=document.getElementById("studentList");
+list.innerHTML="";
 
-    let item=document.createElement("div");
-    item.className="student-item";
+students.forEach((student,index)=>{
+let card=document.createElement("div");
+card.className="student-card";
 
-    let name=document.createElement("div");
-    name.className="student-name";
-    name.contentEditable=true;
-    name.innerText=(index+1)+". "+s.name;
-    name.oninput=function(){
-      students[index].name=name.innerText.split(". ")[1];
-      saveData();
-    };
+let header=document.createElement("div");
+header.className="student-header";
 
-    let btn=document.createElement("button");
-    btn.className="more-btn";
-    btn.innerText="More";
+header.innerHTML=`
+<h3>${index+1}. ${student.name}</h3>
+<button class="more-btn" onclick="toggleDetails(${index})">More</button>
+`;
 
-    let detail=document.createElement("div");
-    detail.className="student-detail";
+let details=document.createElement("div");
+details.className="student-details";
+details.id="details"+index;
 
-    let grid=document.createElement("div");
-    grid.className="attendance";
-    s.attendance.forEach((day,i)=>{
-      let cell=document.createElement("div");
-      cell.className="day";
-      cell.innerText=i+1;
-      if(day)cell.classList.add("present");
-      cell.onclick=function(){
-        students[index].attendance[i]=!students[index].attendance[i];
-        saveData();
-        renderStudents();
-      };
-      grid.appendChild(cell);
-    });
-
-    let payment=document.createElement("div");
-    payment.className="payment";
-    payment.innerHTML="<b>Payment:</b> "+(s.paid?"Paid ✅":"Not Paid ❌");
-
-    let toggle=document.createElement("button");
-    toggle.innerText="Toggle";
-    toggle.onclick=function(){
-      students[index].paid=!students[index].paid;
-      saveData();
-      renderStudents();
-    };
-
-    payment.appendChild(toggle);
-
-    detail.appendChild(grid);
-    detail.appendChild(payment);
-
-    btn.onclick=function(){
-      detail.classList.toggle("open");
-      btn.innerText=detail.classList.contains("open")?"Less":"More";
-    };
-
-    item.appendChild(name);
-    item.appendChild(btn);
-
-    wrapper.appendChild(item);
-    wrapper.appendChild(detail);
-
-    studentList.appendChild(wrapper);
-  });
+let attendanceHTML='<div class="attendance">';
+for(let i=0;i<30;i++){
+attendanceHTML+=`
+<div class="${student.attendance[i]?'present':''}"
+onclick="toggleAttendance(${index},${i})">
+${i+1}
+</div>`;
 }
+attendanceHTML+='</div>';
 
+details.innerHTML=attendanceHTML+
+`<button class="payment-btn ${student.paid?'paid':''}"
+onclick="togglePayment(${index})">
+${student.paid?'Paid':'Unpaid'}
+</button>`;
+
+card.appendChild(header);
+card.appendChild(details);
+list.appendChild(card);
+});
+}
 </script>
 
 </body>
