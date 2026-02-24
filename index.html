@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bright Future Coaching Academy</title>
 
-<link rel="icon" type="image/png" href="logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -18,13 +17,23 @@
 }
 
 body{
-  background:#f4f7fa;
+  overflow-x:hidden;
+  background:linear-gradient(-45deg,#1e3c72,#2a5298,#4facfe,#00f2fe);
+  background-size:400% 400%;
+  animation:gradientBG 12s ease infinite;
   color:#333;
+}
+
+@keyframes gradientBG{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
 /* NAVBAR */
 nav{
-  background:#0d47a1;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(8px);
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -53,60 +62,91 @@ nav ul li a{
   color:white;
   text-decoration:none;
   font-weight:500;
-  cursor:pointer;
   transition:0.3s;
+  cursor:pointer;
 }
 
 nav ul li a:hover{
   color:#ffcc00;
+  transform:scale(1.1);
 }
 
 /* HERO */
 header{
   height:90vh;
-  background:linear-gradient(to right,#1565c0,#42a5f5);
-  color:white;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
+  color:white;
   padding:20px;
+  animation:fadeIn 1.5s ease;
 }
 
 header h1{
-  font-size:42px;
+  font-size:48px;
   margin-bottom:15px;
 }
 
 header p{
   margin-bottom:20px;
-  font-size:18px;
+  font-size:20px;
 }
 
 button{
   background:#ffcc00;
   border:none;
   padding:12px 25px;
-  border-radius:6px;
+  border-radius:8px;
   cursor:pointer;
   transition:0.3s;
-  font-weight:500;
+  font-weight:600;
 }
 
 button:hover{
   background:#ffaa00;
-  transform:scale(1.05);
+  transform:scale(1.1);
 }
 
+/* SECTIONS */
 section{
-  padding:70px 20px;
+  padding:80px 20px;
   text-align:center;
+  background:white;
+  margin:40px 20px;
+  border-radius:15px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.15);
+  animation:fadeInUp 1s ease;
 }
 
 section h2{
   margin-bottom:20px;
-  color:#0d47a1;
+  color:#1e3c72;
+}
+
+/* COURSE CARDS */
+.course-box{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:25px;
+  margin-top:20px;
+}
+
+.card{
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  color:white;
+  padding:30px;
+  width:250px;
+  border-radius:15px;
+  transition:0.4s;
+  box-shadow:0 6px 20px rgba(0,0,0,0.2);
+}
+
+.card:hover{
+  transform:translateY(-15px) scale(1.05);
+  box-shadow:0 15px 35px rgba(0,0,0,0.3);
 }
 
 /* LOGIN PAGE */
@@ -120,10 +160,11 @@ section h2{
 .login-box{
   background:white;
   padding:40px;
-  border-radius:12px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
   text-align:center;
-  width:300px;
+  width:320px;
+  animation:fadeIn 1s ease;
 }
 
 .login-box input{
@@ -137,7 +178,7 @@ section h2{
 .login-box button{
   width:100%;
   padding:12px;
-  background:#0d47a1;
+  background:#1e3c72;
   color:white;
   border:none;
   border-radius:6px;
@@ -150,17 +191,22 @@ section h2{
   display:none;
 }
 
-/* STUDENT PAGE */
-.student-page{
-  display:none;
-  padding:30px 20px;
+footer{
+  background:#000;
+  color:white;
+  padding:20px;
+  text-align:center;
 }
 
-footer{
-  background:#0d47a1;
-  color:white;
-  padding:15px;
-  text-align:center;
+/* Animations */
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+@keyframes fadeInUp{
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
@@ -177,18 +223,40 @@ footer{
 
 <!-- HOME PAGE -->
 <div id="homePage">
-  <header>
-    <h1>Bright Future Coaching Academy</h1>
-    <p>Expert Faculty | Smart Classes | High Success Rate</p>
-    <button onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
-      Learn More
-    </button>
-  </header>
 
-  <section id="about">
-    <h2>About Us</h2>
-    <p>We provide quality coaching for Class 8–12, JEE & NEET preparation.</p>
-  </section>
+<header>
+  <h1>Bright Future Coaching Academy</h1>
+  <p>Expert Faculty | Smart Classes | High Success Rate</p>
+  <button onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">
+    Explore Courses
+  </button>
+</header>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>We provide high quality coaching for Class 8–12, JEE & NEET with expert teachers and modern learning techniques.</p>
+</section>
+
+<section id="courses">
+  <h2>Our Courses</h2>
+  <div class="course-box">
+    <div class="card">Class 8 Coaching</div>
+    <div class="card">Class 9 Coaching</div>
+    <div class="card">Class 10 Coaching</div>
+    <div class="card">Class 11 Coaching</div>
+    <div class="card">Class 12 Coaching</div>
+    <div class="card">JEE Preparation</div>
+    <div class="card">NEET Preparation</div>
+  </div>
+</section>
+
+<section id="admission">
+  <h2>Admission Open 2026</h2>
+  <p>Limited seats available. Register now!</p>
+  <br>
+  <button>Apply Now</button>
+</section>
+
 </div>
 
 <!-- LOGIN PAGE -->
@@ -202,40 +270,30 @@ footer{
   </div>
 </div>
 
-<!-- STUDENT PAGE -->
-<div class="student-page" id="studentPage">
-  <h2>Student Management</h2>
-  <p>Welcome Admin 👨‍🏫</p>
-</div>
-
 <footer>
-  © 2026 Bright Future Coaching Academy
+  © 2026 Bright Future Coaching Academy | All Rights Reserved
 </footer>
 
 <script>
 
-// Navigation Buttons
+// Navigation
 document.getElementById("homeBtn").addEventListener("click", function(){
   document.getElementById("homePage").style.display="block";
   document.getElementById("loginPage").style.display="none";
-  document.getElementById("studentPage").style.display="none";
 });
 
 document.getElementById("adminBtn").addEventListener("click", function(){
   document.getElementById("homePage").style.display="none";
   document.getElementById("loginPage").style.display="flex";
-  document.getElementById("studentPage").style.display="none";
 });
 
-// Login Function
+// Login
 function checkLogin(){
-  const user = document.getElementById('username').value;
-  const pass = document.getElementById('password').value;
-
-  if(user === "sir" && pass === "1234"){
-    document.getElementById("loginPage").style.display="none";
-    document.getElementById("studentPage").style.display="block";
-  } else {
+  const user=document.getElementById('username').value;
+  const pass=document.getElementById('password').value;
+  if(user==="sir" && pass==="1234"){
+    alert("Login Successful ✅");
+  }else{
     document.getElementById("errorMsg").style.display="block";
   }
 }
