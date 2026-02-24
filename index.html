@@ -4,292 +4,266 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bright Future Coaching Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
-  scroll-behavior:smooth;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Poppins', sans-serif;
+scroll-behavior:smooth;
 }
 
-/* 🌈 Animated Background */
 body{
-  color:#ffffff;
-  overflow-x:hidden;
-  background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1c92d2,#f2fcfe);
-  background-size:400% 400%;
-  animation:gradientBG 15s ease infinite;
+background:linear-gradient(120deg,#fdfdfd,#f1f5ff,#ffffff);
+animation:bgMove 10s infinite alternate;
+perspective:1000px;
 }
 
-@keyframes gradientBG{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+@keyframes bgMove{
+0%{background-position:left;}
+100%{background-position:right;}
 }
 
-/* NAVBAR */
-nav{
-  backdrop-filter:blur(12px);
-  background:rgba(0,0,0,0.4);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 40px;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  box-shadow:0 0 20px #00f2ff;
-}
-nav .logo{
-  color:#00f2ff;
-  font-size:22px;
-  font-weight:bold;
-  text-shadow:0 0 10px #00f2ff;
-}
-nav ul{list-style:none; display:flex;}
-nav ul li{margin-left:20px;}
-nav ul li a{
-  color:white;
-  text-decoration:none;
-  cursor:pointer;
-  transition:0.3s;
-}
-nav ul li a:hover{
-  color:#00f2ff;
-  text-shadow:0 0 10px #00f2ff;
-}
+/* ================= HEADER ================= */
 
-/* HERO */
 header{
-  height:90vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:20px;
+background:linear-gradient(135deg,#6a11cb,#2575fc);
+color:white;
+padding:20px;
+text-align:center;
+animation:fadeDown 1s ease-in-out;
 }
+
+@keyframes fadeDown{
+from{transform:translateY(-50px);opacity:0;}
+to{transform:translateY(0);opacity:1;}
+}
+
 header h1{
-  font-size:48px;
-  margin-bottom:15px;
-  text-shadow:0 0 20px #00f2ff;
-}
-header p{
-  margin-bottom:20px;
-  font-size:20px;
-  opacity:0.9;
+font-size:32px;
+letter-spacing:2px;
 }
 
-/* Neon Buttons */
-button{
-  background:transparent;
-  border:2px solid #00f2ff;
-  padding:12px 25px;
-  border-radius:30px;
-  cursor:pointer;
-  transition:0.4s;
-  font-weight:500;
-  color:white;
-  box-shadow:0 0 10px #00f2ff;
-}
-button:hover{
-  background:#00f2ff;
-  color:black;
-  box-shadow:0 0 25px #00f2ff;
-  transform:scale(1.1);
+/* ================= NAV ================= */
+
+nav{
+display:flex;
+justify-content:center;
+gap:20px;
+background:white;
+padding:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* SECTIONS */
-section{
-  padding:80px 20px;
-  text-align:center;
-}
-section h2{
-  margin-bottom:20px;
-  font-size:32px;
-  text-shadow:0 0 15px #00f2ff;
+nav a{
+text-decoration:none;
+color:#333;
+font-weight:600;
+transition:0.3s;
 }
 
-/* COURSE SECTION */
-.course-box{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:30px;
-  margin-top:30px;
-  perspective:1200px;
+nav a:hover{
+color:#2575fc;
+transform:scale(1.1);
 }
 
-/* Premium Gradient Cards */
-.card{
-  padding:18px 45px;
-  border-radius:50px;
-  font-weight:600;
-  cursor:pointer;
-  color:white;
-  position:relative;
-  overflow:hidden;
-  background:linear-gradient(135deg,#00f2ff,#4facfe,#00ff87,#00f2ff);
-  background-size:300% 300%;
-  animation:gradientMove 6s ease infinite, float 4s ease-in-out infinite;
-  box-shadow:0 0 25px rgba(0,255,255,0.6);
-  transition:0.6s;
-  transform-style:preserve-3d;
+/* ================= HERO ================= */
+
+.hero{
+text-align:center;
+padding:60px 20px;
+background:linear-gradient(120deg,#ffffff,#eaf0ff);
+animation:fadeIn 2s ease;
 }
 
-/* Moving Gradient */
-@keyframes gradientMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
 }
 
-/* Floating */
-@keyframes float{
-  0%{transform:translateY(0);}
-  50%{transform:translateY(-15px);}
-  100%{transform:translateY(0);}
+.hero h2{
+font-size:40px;
+color:#333;
+margin-bottom:15px;
 }
 
-/* Shining Border */
-.card::before{
-  content:"";
-  position:absolute;
-  top:-2px; left:-2px;
-  right:-2px; bottom:-2px;
-  border-radius:50px;
-  background:linear-gradient(45deg,#00f2ff,#ff00ff,#00ff87,#00f2ff);
-  background-size:400%;
-  animation:shine 6s linear infinite;
-  z-index:-1;
+.hero p{
+color:#555;
 }
 
-@keyframes shine{
-  0%{background-position:0%;}
-  100%{background-position:400%;}
+/* ================= OUR CLASSES ================= */
+
+.classes{
+padding:60px 20px;
+text-align:center;
+background:#f8fbff;
 }
 
-/* Hover 3D */
-.card:hover{
-  transform:rotateY(15deg) scale(1.15);
-  box-shadow:0 0 45px #00f2ff;
+.classes h2{
+margin-bottom:40px;
+font-size:30px;
+color:#333;
 }
 
-/* ✅ CLICK FORWARD EFFECT */
-.card.active{
-  transform:translateZ(150px) scale(1.3) rotateY(0deg);
-  box-shadow:0 0 60px #00f2ff;
-  z-index:10;
+.class-container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
 }
 
-/* APPLY SECTION SPECIAL ANIMATION */
-#admission{
-  position:relative;
-  overflow:hidden;
+.class-box{
+width:220px;
+height:150px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+font-size:20px;
+color:white;
+border-radius:20px;
+cursor:pointer;
+transition:0.5s;
+transform-style:preserve-3d;
 }
 
-#admission::before{
-  content:"";
-  position:absolute;
-  top:0; left:0;
-  width:200%;
-  height:200%;
-  background:radial-gradient(circle at center,#00f2ff33,transparent 70%);
-  animation:rotateGlow 10s linear infinite;
-  z-index:0;
+/* Different colors with perfect match */
+
+.class-box:nth-child(1){background:linear-gradient(135deg,#ff6a00,#ff9966);}
+.class-box:nth-child(2){background:linear-gradient(135deg,#00c6ff,#0072ff);}
+.class-box:nth-child(3){background:linear-gradient(135deg,#11998e,#38ef7d);}
+.class-box:nth-child(4){background:linear-gradient(135deg,#fc466b,#3f5efb);}
+.class-box:nth-child(5){background:linear-gradient(135deg,#f7971e,#ffd200);}
+.class-box:nth-child(6){background:linear-gradient(135deg,#8e2de2,#4a00e0);}
+
+.class-box:hover{
+transform:rotateY(10deg) rotateX(10deg) scale(1.08);
+box-shadow:0 25px 40px rgba(0,0,0,0.2);
 }
 
-@keyframes rotateGlow{
-  from{transform:rotate(0deg);}
-  to{transform:rotate(360deg);}
+.class-box.active{
+transform:scale(1.2) translateZ(60px);
+z-index:10;
 }
 
-#admission h2,
-#admission p,
-#admission button{
-  position:relative;
-  z-index:1;
+/* ================= APPLY SECTION ================= */
+
+.apply{
+padding:60px 20px;
+text-align:center;
+background:linear-gradient(120deg,#ffffff,#f3f9ff);
+animation:zoomIn 1.5s ease;
 }
 
-/* FOOTER */
+@keyframes zoomIn{
+from{transform:scale(0.9);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+.apply button{
+padding:12px 25px;
+border:none;
+background:#2575fc;
+color:white;
+font-size:18px;
+border-radius:25px;
+cursor:pointer;
+transition:0.4s;
+}
+
+.apply button:hover{
+background:#6a11cb;
+transform:scale(1.1);
+}
+
+/* ================= ABOUT ================= */
+
+.about{
+padding:60px 20px;
+background:#ffffff;
+text-align:center;
+}
+
+.about h2{
+margin-bottom:20px;
+}
+
+/* ================= FOOTER ================= */
+
 footer{
-  backdrop-filter:blur(10px);
-  background:rgba(0,0,0,0.4);
-  color:white;
-  padding:20px;
-  text-align:center;
-  box-shadow:0 0 20px #00f2ff;
+background:#111;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+.class-container{
+flex-direction:column;
+align-items:center;
+}
+.class-box{
+width:80%;
+}
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-<div class="logo">Bright Future</div>
-<ul>
-<li><a onclick="showHome()">Home</a></li>
-<li><a onclick="showAdminLogin()">Admin</a></li>
-</ul>
-</nav>
-
-<div id="homePage">
 <header>
 <h1>Bright Future Coaching Academy</h1>
-<p>Expert Faculty | Smart Classes | High Success Rate</p>
-<button onclick="document.getElementById('admission').scrollIntoView({behavior:'smooth'})">Apply Now</button>
 </header>
 
-<section id="about">
-<h2>About Us</h2>
-<p>We provide quality coaching for Class 8–12, JEE & NEET preparation with experienced teachers and modern teaching methods.</p>
+<nav>
+<a href="#">Home</a>
+<a href="#">Classes</a>
+<a href="#">Apply</a>
+<a href="#">About</a>
+</nav>
+
+<section class="hero">
+<h2>Welcome To Bright Future Coaching Academy</h2>
+<p>Your Success Is Our Mission</p>
 </section>
 
-<section id="courses">
+<section class="classes">
 <h2>Our Classes</h2>
-<div class="course-box">
-<div class="card">Class 8</div>
-<div class="card">Class 9</div>
-<div class="card">Class 10</div>
-<div class="card">Class 11</div>
-<div class="card">Class 12</div>
-<div class="card">JEE</div>
-<div class="card">NEET</div>
+<div class="class-container">
+
+<div class="class-box">Class 8</div>
+<div class="class-box">Class 9</div>
+<div class="class-box">Class 10</div>
+<div class="class-box">Class 11</div>
+<div class="class-box">NEET</div>
+<div class="class-box">Extra Classes</div>
+
 </div>
 </section>
 
-<section id="admission">
-<h2>Admission Open 2026</h2>
-<p>Limited seats available. Register now to secure your future.</p>
-<br>
-<button>Apply for Class 8–10</button>
-<button>Apply for Class 11–12</button>
-<button>Apply for JEE</button>
-<button>Apply for NEET</button>
+<section class="apply">
+<h2>Apply Now</h2>
+<button onclick="alert('Contact: 01303185608')">Apply</button>
 </section>
-</div>
+
+<section class="about">
+<h2>About Us</h2>
+<p>Bright Future Coaching Academy provides quality education for students from Class 8 to 11 including NEET preparation.</p>
+</section>
 
 <footer>
-© 2026 Bright Future Coaching Academy | All Rights Reserved
+<p>© 2026 Bright Future Coaching Academy</p>
 </footer>
 
 <script>
-function showHome(){
-  document.getElementById('homePage').style.display='block';
-}
-function showAdminLogin(){
-  document.getElementById('homePage').style.display='none';
-}
-
-/* CLICK ANIMATION SCRIPT */
-document.querySelectorAll('.card').forEach(card=>{
-  card.addEventListener('click',()=>{
-    document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
-    card.classList.toggle('active');
-  });
+document.querySelectorAll(".class-box").forEach(box=>{
+box.addEventListener("click",function(){
+document.querySelectorAll(".class-box").forEach(b=>b.classList.remove("active"));
+this.classList.add("active");
+});
 });
 </script>
 
